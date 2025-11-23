@@ -43,3 +43,14 @@ class SaleOrder(models.Model):
 
             # If all checks pass, run the standard Odoo confirm method
         return super(SaleOrder, self).action_confirm()
+
+    def action_open_reject_wizard(self):
+        return{
+            'type':'ir.actions.act_window',
+            'name':'Reject VIP Order',
+            'res_model':'vip.reject.wizard',
+            'view_mode':'form',
+            'target':'new',
+            'context':{'default_sale_order_id':self.id}
+
+        }

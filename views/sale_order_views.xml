@@ -13,6 +13,12 @@
                         class="oe_highlight"
                         invisible="x_manager_approved or state != 'draft'"
                         groups="vip_sales_flow.group_vip_manager"/>
+                <button name="action_open_reject_wizard"
+                        string="Reject VIP Order"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="x_manager_approved or state != 'draft'"
+                        groups="vip_sales_flow.group_vip_manager"/>
             </xpath>
 
             <xpath expr="//field[@name='payment_term_id']" position="after">
