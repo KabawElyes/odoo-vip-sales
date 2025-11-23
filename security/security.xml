@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="category_vip_sales" model="ir.module.category">
+        <field name="name">VIP Sales Management</field>
+    </record>
+    <record id="group_vip_manager" model="res.groups">
+        <field name="name">VIP Approver</field>
+        <field name="category_id" ref="category_vip_sales"/>
+        <field name="users" eval="[(4,ref('base.user_admin'))]"/>
+    </record>
+</odoo>

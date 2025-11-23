@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_vip" model="ir.ui.view">
+        <field name="name">sale.order.form.vip</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_approve_vip"
+                        string="Approve VIP Order"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="x_manager_approved or state != 'draft'"
+                        groups="vip_sales_flow.group_vip_manager"/>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                 <field name="x_manager_approved" readonly="1" groups="vip_sales_flow.group_vip_manager"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="view_qutotation_tree_vip" model="ir.ui.view">
+        <field name="name">sale.order.tree.vip</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="x_is_high_value" optional="show"/>
+            </xpath>
+
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">x_is_high_value == True</attribute>
+                <attribute name="decoration-info">state == 'draft'</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
